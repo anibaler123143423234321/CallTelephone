@@ -1,0 +1,5 @@
+# Created at 2025-01-21T11:55:39.154
+Boot Manifest-JAR contains absolute paths in classpath 'D:\APILLAMADA\CallTelephone\target\test-classes'
+Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
+'other' has different root
+
