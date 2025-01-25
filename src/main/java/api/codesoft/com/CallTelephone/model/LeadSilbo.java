@@ -55,6 +55,14 @@ public class LeadSilbo implements Serializable {
     return id;
   }
 
+  public LocalDateTime getFechaCreacion() {
+    return fechaCreacion;
+  }
+
+  public void setFechaCreacion(LocalDateTime fechaCreacion) {
+    this.fechaCreacion = fechaCreacion;
+  }
+
   // Normalización y limpieza del campo `productOrder`
   public void setProductOrder(String productOrder) {
     this.productOrder = cleanInput(productOrder);

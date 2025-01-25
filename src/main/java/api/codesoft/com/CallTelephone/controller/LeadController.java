@@ -13,7 +13,8 @@ import java.util.Map;
 @RestController
 @CrossOrigin(origins = {
         "https://tufibrarapida.es",
-        "https://tufibrarapida.com"
+        "https://tufibrarapida.com",
+        "http://localhost:4321"
 })
 @RequestMapping("/api/main/lead")
 public class LeadController {
@@ -25,17 +26,17 @@ public class LeadController {
     this.leadService = leadService;
   }
 
-  // Crear un nuevo lead
+  // Endpoint para crear un nuevo lead
   @PostMapping("/create")
-  public ResponseEntity<Map<String, String>> createLead(@RequestBody LeadSilbo lead) {
-    Map<String, String> response = new HashMap<>();
+  public ResponseEntity<Map<String, Object>> createLead(@RequestBody LeadSilbo lead) {
+    Map<String, Object> response = new HashMap<>();
     try {
-      // Guardar el lead (fechaCreacion ya se maneja en el servicio)
+      // Guardar el lead
       LeadSilbo savedLead = leadService.saveLead(lead);
 
       response.put("status", "success");
       response.put("message", "Lead creado exitosamente");
-      response.put("detail", "El lead fue guardado con ID: " + savedLead.getId());
+      response.put("data", savedLead);
       return ResponseEntity.status(HttpStatus.CREATED).body(response);
     } catch (Exception e) {
       response.put("status", "error");
@@ -45,9 +46,9 @@ public class LeadController {
     }
   }
 
-  // Obtener todos los leads
+  // Endpoint para obtener todos los leads
   @GetMapping("/all")
-  public ResponseEntity<?> getAllLeads(@RequestParam(value = "Bearer", required = true) String token) {
+  public ResponseEntity<Map<String, Object>> getAllLeads(@RequestParam(value = "Bearer", required = true) String token) {
     Map<String, Object> response = new HashMap<>();
     try {
       // Validar el token
@@ -59,6 +60,7 @@ public class LeadController {
 
       // Obtener todos los leads
       List<LeadSilbo> leads = leadService.findAllLeads();
+
       response.put("status", "success");
       response.put("message", "Leads obtenidos exitosamente");
       response.put("data", leads);
