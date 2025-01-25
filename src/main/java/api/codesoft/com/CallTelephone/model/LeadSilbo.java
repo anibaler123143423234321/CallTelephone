@@ -10,6 +10,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.safety.Safelist;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -42,6 +43,9 @@ public class LeadSilbo implements Serializable {
   @Column(name = "product_order", nullable = true)
   @JsonProperty("order")
   private String productOrder;
+
+  @Column(name="fecha_creacion", nullable = false)
+  private LocalDateTime fechaCreacion;
 
   @Column(name = "campaign_id", nullable = true)
   @JsonProperty("campaign_id")
