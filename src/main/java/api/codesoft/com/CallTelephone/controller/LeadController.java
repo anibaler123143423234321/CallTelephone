@@ -20,7 +20,7 @@ import java.util.Map;
 public class LeadController {
 
   private final LeadService leadService;
-  private static final String STATIC_TOKEN = "vaxiDrezKeySecurePassword!";
+  private static final String STATIC_TOKEN = "Dagn3rChuman!K3y$ecureP@ssw0rd2025!";
 
   public LeadController(LeadService leadService) {
     this.leadService = leadService;
