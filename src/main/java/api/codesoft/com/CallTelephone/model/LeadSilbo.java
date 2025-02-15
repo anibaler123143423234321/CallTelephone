@@ -20,6 +20,54 @@ import java.time.LocalDateTime;
 @Table(name = "leadSilbo")
 public class LeadSilbo implements Serializable {
 
+  public String getPhone() {
+    return phone;
+  }
+
+  public void setPhone(String phone) {
+    this.phone = phone;
+  }
+
+  public String getCampaignId() {
+    return campaignId;
+  }
+
+  public void setCampaignId(String campaignId) {
+    this.campaignId = campaignId;
+  }
+
+  public String getProductOrder() {
+    return productOrder;
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
+  public String getSegment() {
+    return segment;
+  }
+
+  public void setSegment(String segment) {
+    this.segment = segment;
+  }
+
+  public String getOperator() {
+    return operator;
+  }
+
+  public void setOperator(String operator) {
+    this.operator = operator;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
@@ -55,14 +103,6 @@ public class LeadSilbo implements Serializable {
     return id;
   }
 
-  public LocalDateTime getFechaCreacion() {
-    return fechaCreacion;
-  }
-
-  public void setFechaCreacion(LocalDateTime fechaCreacion) {
-    this.fechaCreacion = fechaCreacion;
-  }
-
   // Normalización y limpieza del campo `productOrder`
   public void setProductOrder(String productOrder) {
     this.productOrder = cleanInput(productOrder);
@@ -75,21 +115,30 @@ public class LeadSilbo implements Serializable {
     }
     // Limpia etiquetas HTML y normaliza caracteres
     return Jsoup.clean(input, Safelist.none())
-      .replace("\n", " ") // Reemplaza saltos de línea con espacios
-      .replace(",", ".")  // Cambia comas por puntos
-      .trim();            // Elimina espacios innecesarios
+            .replace("\n", " ") // Reemplaza saltos de línea con espacios
+            .replace(",", ".")  // Cambia comas por puntos
+            .trim();            // Elimina espacios innecesarios
   }
 
   @Override
   public String toString() {
     return "Lead{" +
-      "id=" + id +
-      ", phone='" + phone + '\'' +
-      ", operator='" + operator + '\'' +
-      ", segment='" + segment + '\'' +
-      ", email='" + email + '\'' +
-      ", productOrder='" + productOrder + '\'' +
-      ", campaignId='" + campaignId + '\'' +
-      '}';
+            "id=" + id +
+            ", phone='" + phone + '\'' +
+            ", operator='" + operator + '\'' +
+            ", segment='" + segment + '\'' +
+            ", email='" + email + '\'' +
+            ", productOrder='" + productOrder + '\'' +
+            ", campaignId='" + campaignId + '\'' +
+            '}';
   }
+
+  public LocalDateTime getFechaCreacion() {
+    return fechaCreacion;
+  }
+
+  public void setFechaCreacion(LocalDateTime fechaCreacion) {
+    this.fechaCreacion = fechaCreacion;
+  }
+
 }
